@@ -103,7 +103,7 @@ api.get("/assistant", inflight () => {
 
 
 let website = new react.App(
-  projectPath: "../frontend",
+  projectPath: "../my_frontend",
   //localPort: 4000 // default is 3001
  );
 
