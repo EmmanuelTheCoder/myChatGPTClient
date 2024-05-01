@@ -10,9 +10,9 @@
           require("C:/Users/loyal/Desktop/codingProject/assistant/backend/target/test/main.wsim/.wing/inflight.$Closure1-4.cjs")({
             $____parent_this_1_props_useBuildCommand_____null_: false,
             $__parent_this_1_buildCommand: "npm run build",
-            $__parent_this_1_buildDir: "C:/Users/loyal/Desktop/codingProject/assistant/frontend1/build",
-            $__parent_this_1_env: {"API_URL": process.env["WING_TOKEN_WSIM_ROOT_ENV0_API_ATTRS_URL"],"TEXT": "Hello welcome here",},
-            $__parent_this_1_path: "C:/Users/loyal/Desktop/codingProject/assistant/frontend1",
+            $__parent_this_1_buildDir: "C:/Users/loyal/Desktop/codingProject/assistant/front_end/build",
+            $__parent_this_1_env: {"API_URL": process.env["WING_TOKEN_WSIM_ROOT_ENV0_API_ATTRS_URL"],},
+            $__parent_this_1_path: "C:/Users/loyal/Desktop/codingProject/assistant/front_end",
             $__parent_this_1_startCommand: "npm run start",
             $fs_Util: require("C:/Users/loyal/AppData/Roaming/npm/node_modules/winglang/node_modules/@winglang/sdk/lib/fs/fs.js").Util,
             $props_localPort: undefined,

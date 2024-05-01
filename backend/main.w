@@ -103,9 +103,8 @@ api.get("/assistant", inflight () => {
 
 
 let website = new react.App(
-  projectPath: "../my_frontend",
+  projectPath: "../front_end",
   //localPort: 4000 // default is 3001
  );
 
 website.addEnvironment("API_URL", api.url);
-website.addEnvironment("TEXT", "Hello welcome here");

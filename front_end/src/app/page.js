@@ -1,10 +1,9 @@
-
-
+"use client"
 import {useEffect, useState} from 'react';
 import axios from 'axios';
-import './App.css';
+import Head from 'next/head';
+import Script from 'next/script';
 
-const {API_URL} = window.wingEnv;
 
 
 function App() {
@@ -12,10 +11,10 @@ function App() {
   const [input, setInput] = useState("");
   const [allInteractions, setAllInteractions] = useState([])
 
-  const retrieveAllInteractions = async () => {
+  const retrieveAllInteractions = async (api_url) => {
     await axios ({
       method: "GET",
-      url: `${API_URL}/assistant`,
+      url: `${api_url}/assistant`,
     }).then(res => {
       console.log(res)
       console.log("data", res.data)
@@ -62,11 +61,17 @@ function App() {
         
   }
 
+
   useEffect(() => {
-    retrieveAllInteractions()
+    if (typeof window !== "undefined"){
+      retrieveAllInteractions(window.wingEnv.API_URL)
+    }
+   
+    
   }, [isThinking])
   return (
     <div className="container">
+        <Script src='./wing.js'></Script>
       <div className="header">
         <h1>My Assistant</h1>
         <p>Ask anything...</p>

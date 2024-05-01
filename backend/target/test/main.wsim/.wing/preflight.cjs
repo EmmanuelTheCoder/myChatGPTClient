@@ -220,9 +220,8 @@ class $Root extends $stdlib.std.Resource {
     this.node.root.new("@winglang/sdk.cloud.Function", cloud.Function, this, "START HERE", new $Closure1(this, "$Closure1"));
     (api.post("/assistant", new $Closure2(this, "$Closure2")));
     (api.get("/assistant", new $Closure3(this, "$Closure3")));
-    const website = new react.App(this, "App", { projectPath: "../frontend1" });
+    const website = new react.App(this, "App", { projectPath: "../front_end" });
     (website.addEnvironment("API_URL", api.url));
-    (website.addEnvironment("TEXT", "Hello welcome here"));
   }
 }
 const $PlatformManager = new $stdlib.platform.PlatformManager({platformPaths: $platforms});
