@@ -3,6 +3,7 @@ bring openai;
 bring http;
 bring ex;
 bring react;
+// bring postgres;
 
 // TODO: Set the secret value in the "secrets.json" file (create it if needed) in the ".wing" folder inside your user's folder.
 // You need to add an OAIAPIKey like this:
@@ -16,6 +17,10 @@ let apiKeySecret = new cloud.Secret(name: "OAIAPIKey") as "OpenAI Secret";
 let api = new cloud.Api({cors: true});
 let counter = new cloud.Counter();
 
+// let database = new postgres.Database(
+//   name: "assitant",
+//   pgVersion: 15,
+// );
 
 
 let db = new ex.Table(
@@ -26,6 +31,7 @@ let db = new ex.Table(
     "answer" => ex.ColumnType.STRING,
   }
 );
+
 
 class Assistant {
   personality: str;
@@ -104,7 +110,7 @@ api.get("/assistant", inflight () => {
 
 let website = new react.App(
   projectPath: "../front_end",
-  //localPort: 4000 // default is 3001
+  // localPort: 4001 // default is 3001
  );
 
 website.addEnvironment("API_URL", api.url);
