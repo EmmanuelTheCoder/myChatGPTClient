@@ -1,9 +1,8 @@
 "use client"
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useCallback} from 'react';
 import axios from 'axios';
 import Head from 'next/head';
 import Script from 'next/script';
-
 
 
 function App() {
@@ -13,7 +12,7 @@ function App() {
   const [input, setInput] = useState("");
   const [allInteractions, setAllInteractions] = useState([])
 
-  const retrieveAllInteractions = async (api_url) => {
+  const retrieveAllInteractions = useCallback(async (api_url) => {
     await axios ({
       method: "GET",
       url: `${api_url}/assistant`,
@@ -22,12 +21,12 @@ function App() {
       console.log("data", res.data)
       setAllInteractions(res.data)
     })
-  }
+  }, [])
+  
 
   //post user query to the backend
 
-  const handleSubmit = async (e) => {
-    
+  const handleSubmit = useCallback(async (e)=> {
     e.preventDefault()
     
     setIsThinking(!isThinking)
@@ -39,36 +38,31 @@ function App() {
       
     }else{
 
-        try{
-
-          axios({
-            method: "POST",
-            url: `${API_URL}/assistant`,
-            headers: {
-              "Content-Type": "application/json"
-            },
-            data: input
-          })
-          .then((res) => {
-             setInput("")
-             setIsThinking(false)
-             console.log("response from sending prompt", res)
-          })
-      
-        }catch (error){
-          alert("an error occured while fetching", error)
-        }
-          
+      await axios({
+        method: "POST",
+        url: `${API_URL}/assistant`,
+        headers: {
+          "Content-Type": "application/json"
+        },
+        data: input
+      })
+      .then((res) => {
+          setInput("")
+          setIsThinking(false)
+          retrieveAllInteractions(API_URL)
+          console.log("response from sending prompt", res)
+      })      
     }
-        
-  }
 
+  })
+
+ 
 
   useEffect(() => {
     retrieveAllInteractions(API_URL)
    
     
-  }, [isThinking])
+  }, [])
   return (
     <div className="container">
         <Script src='./wing.js'></Script>
@@ -85,8 +79,8 @@ function App() {
                 return(
                   <div key={chat.id} className="user-bot-chat">
                     
-                    <p className='user-question'>{chat.question}</p>
-                    <p className='response'>{chat.answer}</p>
+                    <p className='user-question'>Me: {chat.question}</p>
+                    <p className='response'>Assistant: {chat.answer}</p>
 
     
                   </div>
