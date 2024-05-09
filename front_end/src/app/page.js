@@ -7,6 +7,8 @@ import Script from 'next/script';
 
 
 function App() {
+  const API_URL = "http://127.0.0.1:64550"
+
   const [isThinking, setIsThinking] = useState(false);
   const [input, setInput] = useState("");
   const [allInteractions, setAllInteractions] = useState([])
@@ -63,9 +65,7 @@ function App() {
 
 
   useEffect(() => {
-    if (typeof window !== "undefined"){
-      retrieveAllInteractions(window.wingEnv.API_URL)
-    }
+    retrieveAllInteractions(API_URL)
    
     
   }, [isThinking])

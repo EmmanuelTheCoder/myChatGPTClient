@@ -122,3 +122,6 @@
 .notThinking {
   display: none;
 }
+.type-area input {
+  text-align: center;
+}
