@@ -1,12 +1,9 @@
 "use client"
 import {useEffect, useState, useCallback} from 'react';
 import axios from 'axios';
-import Head from 'next/head';
-import Script from 'next/script';
 
 
 function App() {
-  const API_URL = "http://127.0.0.1:64550"
 
   const [isThinking, setIsThinking] = useState(false);
   const [input, setInput] = useState("");
@@ -40,7 +37,7 @@ function App() {
 
       await axios({
         method: "POST",
-        url: `${API_URL}/assistant`,
+        url: `${window.wingEnv.API_URL}/assistant`,
         headers: {
           "Content-Type": "application/json"
         },
@@ -49,7 +46,7 @@ function App() {
       .then((res) => {
           setInput("")
           setIsThinking(false)
-          retrieveAllInteractions(API_URL)
+          retrieveAllInteractions(window.wingEnv.API_URL)
           console.log("response from sending prompt", res)
       })      
     }
@@ -59,13 +56,16 @@ function App() {
  
 
   useEffect(() => {
-    retrieveAllInteractions(API_URL)
+    if (typeof window !== "undefined"){
+      retrieveAllInteractions(window.wingEnv.API_URL)
+
+    }
    
     
   }, [])
   return (
     <div className="container">
-        <Script src='./wing.js'></Script>
+       
       <div className="header">
         <h1>My Assistant</h1>
         <p>Ask anything...</p>
